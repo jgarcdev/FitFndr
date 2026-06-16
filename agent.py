@@ -90,6 +90,8 @@ def runAgent(query: str, wardrobe: dict) -> dict:
   # Step 3: Search listings
   results = searchListings(description=description, size=size, maxPrice=maxPrice)
   session["search_results"] = results
+  print("State after searchListings:", session)
+  print("\n")
 
   if not results:
     hints = []
@@ -102,7 +104,11 @@ def runAgent(query: str, wardrobe: dict) -> dict:
 
   session["selected_item"] = results[0]
   session["outfit_suggestion"] = suggestOutfit(results[0], wardrobe)
+  print("State after suggestOutfit:", session)
+  print("\n")
   session["fit_card"] = createFitCard(session["outfit_suggestion"], results[0])
+  print("State after createFitCard:", session)
+  print("\n\n")
 
   return session
 
